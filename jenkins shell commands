@@ -1,0 +1,31 @@
+##!/bin/bash
+#
+## Define variables
+#REMOTE_USER="ubuntu"
+#PRODUCTION_SERVER="54.174.108.85"
+#REMOTE_DIR="/home/ubuntu"
+#SSH_PASSWORD="1m2p3k4n"
+#JENKINS_WORKSPACE="$WORKSPACE"
+
+#sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r "$JENKINS_WORKSPACE/" ${REMOTE_USER}@${PRODUCTION_SERVER}:/home/ubuntu
+#sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${PRODUCTION_SERVER} "sudo apt update && sudo apt install -y nginx"
+
+
+
+
+
+#!/bin/bash
+
+# Define variables
+REMOTE_USER="puneet"
+PRODUCTION_SERVER="34.238.240.148"
+SSH_PASSWORD="1m2p3k4n@P"
+
+# Use a single SSH session with all commands and pass the password to sudo via -S option
+sshpass -p '1m2p3k4n@P' ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${PRODUCTION_SERVER} << EOF
+# Switch to root using 'sudo su' and execute commands in the same session
+echo '1m2p3k4n@P' | sudo -S su -c '
+    apt update
+    apt install -y nginx
+'
+EOF

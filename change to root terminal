@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define variables
+REMOTE_USER="puneet"
+PRODUCTION_SERVER="54.174.108.85"
+SSH_PASSWORD="1m2p3k4n@P"
+
+# Use a single SSH session with all commands and feed the password to sudo via -S option
+sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${PRODUCTION_SERVER} << EOF
+# Switch to root using 'sudo su' and execute commands in the same session
+echo "$SSH_PASSWORD" | sudo -S su -c '
+    apt update
+    apt install -y nginx
+    # Add other commands that require sudo privileges here
+'
+EOF

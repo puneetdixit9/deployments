@@ -1,0 +1,31 @@
+#stages:
+#  - deploy
+#
+#variables:
+#  VM_IP: "54.166.31.201"
+#  VM_USERNAME: "ubuntu"
+#  VM_PASSWORD: "1m2p3k4n"
+#
+#deploy_app:
+#  stage: deploy
+#  only:
+#    - main
+#  script:
+#    - echo "$PRIVATE_KEY_2" > ~/.ssh/id_rsa
+#    - chmod 600 ~/.ssh/id_rsa
+#    - ssh-keyscan $VM_IP >> ~/.ssh/known_hosts
+#    - ssh -i ~/.ssh/id_rsa $VM_USERNAME@$VM_IP "rm -rf /home/ubuntu/test-project"
+
+#    - sudo apt-get update
+#    - sudo apt-get upgrade
+#    - sudo apt-get install -y sshpass
+#    - sshpass -p "$VM_PASSWORD" -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "rm -rf /home/ubuntu/test-project"
+#    - sshpass -p "$VM_PASSWORD" scp -o StrictHostKeyChecking=no -r "$CI_PROJECT_DIR/" $VM_USERNAME@$VM_IP:/home/ubuntu
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "sudo add-apt-repository universe && sudo apt update && sudo apt upgrade -y"
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "sudo apt-get install -y python3.10 python3.10-dev python3.10-distutils python3.10-venv nginx && cd /home/ubuntu/test-project && python3.10 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP 'PID=$(sudo lsof -t -i:5000) && [ -n "$PID" ] && sudo kill -9 "$PID" || echo "No process found on port 5000."'
+#
+#    # Create and execute the script file on the production server
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "echo -e '#!/bin/bash\n\ncd /home/ubuntu/test-project\nnohup /home/ubuntu/test-project/venv/bin/python -m flask run --port 5000 > /dev/null 2>&1 &' > /home/ubuntu/test-project/start_flask_app.sh && chmod +x /home/ubuntu/test-project/start_flask_app.sh && /home/ubuntu/test-project/start_flask_app.sh"
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "sudo rm -rf /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default /usr/share/nginx/html/index.html"
+#    - sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no $VM_USERNAME@$VM_IP "sudo cp -R /home/ubuntu/test-project/server.conf /etc/nginx/sites-available && cd /etc/nginx/sites-enabled && sudo ln -sf /etc/nginx/sites-available/server.conf . && sudo systemctl restart nginx"
