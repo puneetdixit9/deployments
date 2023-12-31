@@ -1,1 +1,1 @@
-https://www.google.com/url?q=https://teams.microsoft.com/l/meetup-join/19%253ameeting_ODE5M2NmODctZWJhNC00ZjQ2LThiZTQtYTE5ODcxYmI3YTJj%2540thread.v2/0?context%3D%257b%2522Tid%2522%253a%25229b0861df-ad09-47df-b4d4-9a00828ab9f0%2522%252c%2522Oid%2522%253a%252296adc053-f1ce-4c6b-9315-1a3d54f2d876%2522%257d&sa=D&source=calendar&usd=2&usg=AOvVaw1Jy5ArigB3gLW4OFpV4ExQ
+
